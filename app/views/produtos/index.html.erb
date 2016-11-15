@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h1 style="margin-left:40%">Produtos</h1>
+</div>
+</head>
+
+<body>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Filtrar por...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Filtrar</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:50px">
+    <div class="col-md-5">
+        <div class="list-group">
+            <% @produtos.each do |produto| %>
+                <%= link_to produto.nome, dashboard_produto_path(produto), class: "list-group-item" %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="col-md-7" id="product-actions">
+        <div class="row">
+            <div class="btn-group btn-group-lg" role="group">
+                <%= link_to "Adicionar Produto", new_dashboard_produto_path, class: "btn btn-default" %>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="btn-group btn-group-lg" role="group">
+                    <button type="button" class="btn btn-default">Editar Produto</button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="btn-group btn-group-lg" role="group">
+                    <button type="button" class="btn btn-default">Excluir Produto</button>
+            </div>
+        </div>
+    </div>
+
+</div>
