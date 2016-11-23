@@ -1,2 +1,79 @@
-<h1>Contas#index</h1>
-<p>Find me in app/views/contas/index.html.erb</p>
+<div class="page-header">
+    <h1 style="margin-left:40%">Contas</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Filtrar por...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Filtrar</button>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:50px">
+    <div class="col-md-5">
+        <div class="list-group">
+            <% @contas.each do |conta| %>
+                <%= link_to "##{conta.id } - Mesa: #{conta.numeroMesa} - #{conta.criado_em}", dashboard_conta_path(conta), class: "list-group-item" %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="col-md-7" id="product-actions">
+        <div class="row">
+            <div class="btn-group btn-group-lg" role="group">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-adicionar">Adicionar Conta
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modal-adicionar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Adicionar conta</h4>
+          </div>
+           
+              <%= form_for(@conta, url: dashboard_contas_path, html: { class: "col-md-6" }) do |f| %>
+                <% if @conta.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@conta.errors.count, "error") %> prohibited this conta from being saved:</h2>
+
+                    <ul>
+                    <% @conta.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                
+                <div class="form-group">
+                  <%= f.label :numeroMesa, "Número da Mesa" %>
+                  <%= f.number_field :numeroMesa, class: "form-control" %>
+                </div>
+                
+                <%= f.hidden_field :duracao, value: 10 %>
+                
+                <div class="form-group">
+                  <%= f.label :qtdClientes, "Quantidade de Clientes" %>
+                  <%= f.number_field :qtdClientes, class: "form-control" %>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Salvar", class: "btn btn-success" %>
+                </div>
+              <% end %>
+
+          <!-- </div> -->
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

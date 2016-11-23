@@ -1,6 +1,9 @@
 class ProdutosController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @produtos = Produto.all
+    @produto = Produto.new
   end
 
   def show

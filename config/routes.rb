@@ -16,5 +16,8 @@ Rails.application.routes.draw do
     resources :pedidos
     resources :itens
     resources :contas
+    resources :transacoes
+    resources :receitas
+    resources :utilizacoes
   end
 end

@@ -1,9 +1,7 @@
 <div class="page-header">
     <h1 style="margin-left:40%">Produtos</h1>
 </div>
-</head>
 
-<body>
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
@@ -27,21 +25,65 @@
     <div class="col-md-7" id="product-actions">
         <div class="row">
             <div class="btn-group btn-group-lg" role="group">
-                <%= link_to "Adicionar Produto", new_dashboard_produto_path, class: "btn btn-default" %>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-adicionar">Adicionar Produto
+                </button>
             </div>
         </div>
-        
-        <div class="row">
-            <div class="btn-group btn-group-lg" role="group">
-                    <button type="button" class="btn btn-default">Editar Produto</button>
-            </div>
+    </div>
+    
+    <div class="modal fade" id="modal-adicionar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Adicionar produto</h4>
+          </div>
+           
+              <%= form_for(@produto, url: dashboard_produtos_path, html: { class: "col-md-6" }) do |f| %>
+                <% if @produto.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+
+                    <ul>
+                    <% @produto.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                
+                <div class="form-group">
+                  <%= f.label :nome, "Nome" %>
+                  <%= f.text_field :nome, class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :descricao, "Descrição" %>
+                  <%= f.text_area :descricao, class: "form-control" %>
+                </div>
+                
+                <div class="form-group">
+                    <%= f.label :preco, "Preço" %>
+                    
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        
+                        <%= f.text_field :preco, class: "form-control", placeholder: "Preço" %>
+                        
+                        <div class="input-group-addon">.00</div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Salvar", class: "btn btn-success" %>
+                </div>
+              <% end %>
+
+          <!-- </div> -->
+          <div class="modal-footer">
+          </div>
         </div>
-        
-        <div class="row">
-            <div class="btn-group btn-group-lg" role="group">
-                    <button type="button" class="btn btn-default">Excluir Produto</button>
-            </div>
-        </div>
+      </div>
     </div>
 
 </div>

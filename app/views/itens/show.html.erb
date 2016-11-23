@@ -1,2 +1,16 @@
-<h1>Itens#show</h1>
-<p>Find me in app/views/itens/show.html.erb</p>
+<div class="col col-md-6">
+    <div class="media">
+        <div class="media-left">
+            <%= image_tag "item_placeholder.svg", class: "media-object", style: "width: 128px; height: 128px;" %>
+        </div>
+        <div class="media-body">
+            <h4><%= @item.nome %></h4>
+            <p><%= @item.limiar %></p>
+            
+            <%= @item.prazo_validade %>
+            
+            <p><%= @item.criado_em %></p>
+            <p><%= @item.atualizado_em %></p>
+        </div>
+    </div>
+</div>

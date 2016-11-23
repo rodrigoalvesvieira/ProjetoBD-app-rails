@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113175121) do
+ActiveRecord::Schema.define(version: 20161117182844) do
 
   create_table "BaixasEstoque", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "produto_id",                                      null: false
@@ -90,12 +90,6 @@ ActiveRecord::Schema.define(version: 20161113175121) do
     t.string   "funcao",             limit: 11,                                      null: false
   end
 
-  create_table "Usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "login",    null: false
-    t.string  "password", null: false
-    t.boolean "admin",    null: false
-  end
-
   create_table "Utilizacoes", primary_key: ["produto", "estoque"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "produto", null: false
     t.integer "estoque", null: false
@@ -117,8 +111,16 @@ ActiveRecord::Schema.define(version: 20161113175121) do
     t.string   "login"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "login",    null: false
+    t.string  "password", null: false
+    t.boolean "admin",    null: false
+    t.string  "email"
   end
 
   add_foreign_key "Estoque", "Transacao", column: "transacao", name: "fk_Estoque_Transacao"
