@@ -1,5 +1,15 @@
-<h1><%= @produto.nome %></h1>
-
-<div>
-    <%= @produto.criado_em.strftime("%d/%m/%Y") %>
+<div class="well">
+    <h2><%= @produto.nome %></h2>
+    
+    <p>
+        Preço
+        <span class="label label-success">
+            <%= number_to_currency @produto.preco, unit: "R$" %>
+        </span>
+    </p>
+    
+    <p>Cadastrado em <%= @produto.criado_em.strftime("%d/%m/%Y") %></p>
+    <p>Atualizado em <%= @produto.atualizado_em.strftime("%d/%m/%Y") %></p>
+    
+    <button type="button" class="btn btn-danger">Remover</button>
 </div>
