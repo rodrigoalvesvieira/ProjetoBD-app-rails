@@ -2,22 +2,12 @@
     <h1 style="margin-left:40%">Itens</h1>
 </div>
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Filtrar por...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Filtrar</button>
-            </span>
-        </div>
-    </div>
-</div>
 
 <div class="row" style="margin-top:50px">
     <div class="col-md-5">
         <div class="list-group">
             <% @itens.each do |item| %>
-                <%= link_to "##{item.id }", dashboard_iten_path(item), class: "list-group-item" %>
+                <%= link_to "##{item.id} #{item.nome}", dashboard_iten_path(item), class: "list-group-item" %>
             <% end %>
         </div>
     </div>

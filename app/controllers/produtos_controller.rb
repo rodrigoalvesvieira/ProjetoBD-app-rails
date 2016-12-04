@@ -1,5 +1,6 @@
 class ProdutosController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_produto, only: [:show, :edit, :update, :destroy]
 
   def index
     @produtos = Produto.all
@@ -34,7 +35,14 @@ class ProdutosController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
+    @produto.destroy
+    
+    
+    respond_to do |format|
+      format.html { redirect_to produtos_url, notice: 'Produto was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
   
   private

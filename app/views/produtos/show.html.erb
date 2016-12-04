@@ -11,5 +11,7 @@
     <p>Cadastrado em <%= @produto.criado_em.strftime("%d/%m/%Y") %></p>
     <p>Atualizado em <%= @produto.atualizado_em.strftime("%d/%m/%Y") %></p>
     
-    <button type="button" class="btn btn-danger">Remover</button>
+    <!-- <button type="button" class="btn btn-danger">Remover</button> -->
+    
+    <%= link_to 'Remover', dashboard_produto_url(@produto), method: :delete, class: "btn btn-danger", data: { confirm: 'Tem certeza?' } %>
 </div>
