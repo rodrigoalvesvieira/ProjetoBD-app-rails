@@ -34,6 +34,9 @@ class UsuariosController < ApplicationController
   def update
   end
   
+  def destroy
+  end
+  
   def user_params
     params.require(:usuario).permit(:login, :email, :admin, :password)
   end

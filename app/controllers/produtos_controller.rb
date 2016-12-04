@@ -12,6 +12,9 @@ class ProdutosController < ApplicationController
 
   def create
     @produto = Produto.new(produto_params)
+    
+    p "inspecionar"
+    p produto_params
 
     respond_to do |format|
       if @produto.save
