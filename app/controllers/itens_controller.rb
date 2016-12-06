@@ -18,11 +18,31 @@ class ItensController < ApplicationController
   end
 
   def create
-    @item = item.new(item_params)
+    produto = Produto.first
+    
+    transacao = Transacao.create(formaPagamento: "CREDITO", valor: 10, descricao: "Tralala", saque: 0, tipo: "PAGAMENTO_CONTA", conta: Conta.first.id)
+    
+    transacao.save
+    
+    ultimo = Estoque.last.id + 1
+
+    
+    estoque = Estoque.create(id: ultimo, qtdItem: item_params[:limiar], transacao: transacao.id, produto_id: produto.id)
+    
+    p "salvou? #{estoque.save}"
+    p estoque
+    p estoque.errors
+      
+    @item = Item.new(
+    nome: item_params[:nome],
+    prazo_validade: item_params[:prazo_validade],
+    limiar: item_params[:limiar],
+    estoque: ultimo
+    )
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to dashboard_item_url(@item), notice: 'item was successfully created.' }
+        format.html { redirect_to dashboard_iten_url(@item), notice: 'item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -42,6 +62,6 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:nome, :limiar, :prazo_validade, :criado_em, :atualizado_em)
+    params.require(:item).permit(:nome, :limiar, :estoque, :prazo_validade, :criado_em, :atualizado_em)
   end
 end

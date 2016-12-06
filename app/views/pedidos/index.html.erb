@@ -59,12 +59,12 @@
 
                 <div class="form-group">
                   <%= f.label :produto, "Produto" %>
-                  <%= f.select :produto, Produto.all, class: "form-control" %>
+                  <%= f.select :produto, options_for_select(Produto.all.collect{ |u| [u.nome, u.id] }), class: "form-control" %>
                 </div>
                 
                 <div class="form-group">
                   <%= f.label :conta, "Conta" %>
-                  <%= f.select :conta, Conta.all, class: "form-control" %>
+                  <%= f.select :conta, options_for_select(Conta.all.collect{ |u| [u, u.id] }), class: "form-control" %>
                 </div>
                 
                 <div class="actions">

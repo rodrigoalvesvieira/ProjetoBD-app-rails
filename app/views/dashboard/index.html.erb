@@ -1,6 +1,31 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <h2 class="lead">Estoque</h2>
+            
+        <div class="col-md-6">
+            <table class="table col-md-6">
+                <caption>Existem <%= @estoque.count %> itens no estoque.</caption>
+                
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Transação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @estoque.each do |estoque| %>
+                    <tr>
+                        <th scope="row"><%= estoque.id %></th>
+                        <td><%= estoque.get_produto %></td>
+                        <td><%= estoque.qtdItem %></td>
+                        <td><%= estoque.transacao %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -8,5 +33,26 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <h2 class="lead">Utilizações</h2>
+        
+        <div class="col-md-6">
+            <table class="table col-md-6">
+                <caption>Existem <%= @utilizacoes.count %> utilizacoes.</caption>
+                
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Estoque</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @utilizacoes.each do |util| %>
+                    <tr>
+                        <td><%= util.produto %></td>
+                        <td><%= util.estoque %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -2,7 +2,6 @@
     <h1 style="margin-left:40%">Itens</h1>
 </div>
 
-
 <div class="row" style="margin-top:50px">
     <div class="col-md-5">
         <div class="list-group">
@@ -54,7 +53,17 @@
                 
                 <div class="form-group">
                   <%= f.label :prazo_validade, "Prazo de Validate" %>
-                  <%= f.datetime_field :prazo_validade, class: "form-control" %>
+                  <%= f.date_field :prazo_validade, class: "form-control" %>
+                </div>
+                
+                <!-- <div class="form-group">
+                    <%= f.label :estoque, "Estoque" %>
+                    <%= f.select :estoque, Estoque.all, class: "form-control" %>
+                </div> -->
+                
+                <div class="form-group">
+                  <%= f.label :limiar, "Quantidade no Estoque" %>
+                  <%= f.number_field :limiar, class: "form-control" %>
                 </div>
 
                 <div class="actions">

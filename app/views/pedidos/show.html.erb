@@ -1,2 +1,21 @@
-<h1>Pedidos#show</h1>
-<p>Find me in app/views/pedidos/show.html.erb</p>
+<div class="well">
+    <div class="media">
+        <div class="media-left">
+            <%= image_tag "item_placeholder.svg", class: "media-object", style: "width: 128px; height: 128px;" %>
+        </div>
+        <div class="media-body">
+            <h4>Mesa <%= @pedido.get_conta.numeroMesa %></h4>
+            <h3>Produto <%= @pedido.try(:get_produto).try(:nome) %></h3>
+            <p>Observação <%= @pedido.observacao %></p>
+            
+            <p>
+                <span class="label label-success">
+                    <%= number_to_currency @pedido.try(:get_produto).try(:preco), unit: "R$" %>
+                </span>
+            </p>
+            
+            <p>Cadastrado em <%= @pedido.criado_em.strftime("%d/%m/%Y") %></p>
+            <p>Atualizado em <%= @pedido.atualizado_em.strftime("%d/%m/%Y") %></p>
+        </div>
+    </div>
+</div>

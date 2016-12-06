@@ -7,4 +7,8 @@ class Pedido < ActiveRecord::Base
   def get_conta
     Conta.find self.conta
   end
+  
+  def get_produto
+    Produto.find self.produto
+  end
 end
