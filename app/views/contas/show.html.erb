@@ -20,6 +20,20 @@
         </span>
     </p>
     
+    <table>
+        <% @pedidos.each do |pedido| %>
+        <div class="well">
+            <p>Produto: <%= pedido.try(:get_produto).try(:nome) %></p>
+            <p>Preço
+                
+                <span class="label label-success">
+                    <%= number_to_currency pedido.try(:get_produto).try(:preco), unit: "R$" %>
+                </span>
+            </p>
+        </div>
+        <% end %>
+    </table>
+    
     <p>Cadastrado em <%= @conta.criado_em.strftime("%d/%m/%Y") %></p>
     <p>Atualizado em <%= @conta.atualizado_em.strftime("%d/%m/%Y") %></p>
 </div>

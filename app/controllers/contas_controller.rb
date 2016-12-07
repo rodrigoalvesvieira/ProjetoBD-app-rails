@@ -8,6 +8,7 @@ class ContasController < ApplicationController
 
   def show
     @conta = Conta.find params[:id]
+    @pedidos = Pedido.where conta: @conta.id
   end
 
   def new
